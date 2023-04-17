@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<style>
+    h4 {
+    color: {{font_color}};
+    align: left;
+    margin-left: 15px;
+    font-size: {{font_size_int}}px;
+    }
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+    <p> </p>
+    <h1>Привет, новый {{proph_name_form}}!</h1>
+    <h3 align="center">Отправляйся сюда: {{dep_name}} </h3>
+    <img src="{{image_path}}"
+           alt="здесь должна была быть картинка, но не нашлась">
+{% endblock %}
+
+</body>
+
+</html>
+
+
