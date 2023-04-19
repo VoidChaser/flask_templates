@@ -1,9 +1,11 @@
-from flask import Flask, render_template, url_for, request
-import json
+from flask import Flask, render_template, url_for, request, redirect
+from login_form import LoginForm
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+# form = LoginForm(app)
 
 
 @app.route('/')
@@ -83,6 +85,32 @@ def form_sample():
         parameters['Готов остаться'] = 'Готов' if request.form.get("acceptRules") else 'Не готов'
         print(parameters)
         return render_template('auto_answer.html', parameters=parameters)
+
+@app.route('/success')
+def succ():
+    return render_template('success.html')
+
+
+@app.route('/access_denied')
+def access_den():
+    return render_template('access_denied.html')
+
+@app.route('/login', methods=['POST', 'GET'])
+def logon():
+    captain_id = 'Captain_cheef_cheef'
+    captain_pass = 'Cheef_make_chee_chee'
+    form = LoginForm()
+    if request.method == 'GET':
+        return render_template('login.html', title='Авторизация', form=form)
+    else:
+        # print(form.captain_id.data, form.captain_password.data)
+        if form.validate_on_submit():
+            if (form.captain_id.data == captain_id) and (form.captain_password.data == captain_pass):
+                return redirect('/success')
+        return redirect('/access_denied')
+
+
+
 
 
 if __name__ == '__main__':
