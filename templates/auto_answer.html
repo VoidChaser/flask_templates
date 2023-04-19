@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/answer.css" />
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+    <p> </p>
+    <h3 align="left"><i>Ваши ответы на форму:</i></h3>
+    <p> </p>
+    {% for key in parameters.keys() %}
+        <p>{{key}}: {{parameters[key]}}</p>
+        <p></p>
+    {% endfor %}
+{% endblock %}
+
+</body>
+</html>
